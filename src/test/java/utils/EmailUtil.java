@@ -70,7 +70,17 @@ public class EmailUtil {
 						
 			//send email
 		    Transport.send(msg);
-		    LogHelper.info("Report emailed successfully to " + toEmail);
+			/*
+			 * since toEmail is an array of strings then below line will
+			 * LogHelper.info("Report emailed successfully to " + toEmail); print Report
+			 * emailed successfully to [Ljava.lang.String;@481558ce It can be corrected by
+			 * below two ways:- LogHelper.info("Report emailed successfully to " +
+			 * Arrays.toString(toEmail)); which will print: Report emailed successfully to
+			 * [abc@gmail.com, xyz@gmail.com] and another better way is used here:
+			 */
+		    LogHelper.info("Report emailed successfully to " + String.join(", ", toEmail)); 
+		    //it will print report as- Report emailed successfully to abc@gmail.com, xyz@gmail.com
+		    
 		} catch (Exception e) {
 		    LogHelper.error("Failed to send email report", e);
 		}

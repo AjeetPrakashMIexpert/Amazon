@@ -1,10 +1,15 @@
 package utils;
 
+import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
@@ -13,7 +18,7 @@ import com.aventstack.extentreports.reporter.configuration.Theme;
 public class ExtentManager {
 	
 	private static ExtentReports extent;
-	private static String extentReportPath;
+	private static String extentReportAbsPath;
 	
 	   /**
      * Creates an ExtentReports instance with a timestamped report name
@@ -27,15 +32,26 @@ public class ExtentManager {
 	
 	public static ExtentReports createInstance(String filePath) {
 		String dateFolder=DateTimeUtil.getDateFolder();
-		System.out.println("##########################################################################################"+dateFolder);
 		String timeStamp=DateTimeUtil.getTimestampedName(filePath);
 		String reportFile=timeStamp+".html";
 		//To get the absolute path of the extent report on my laptop
 		Path extentReportPath=Paths.get(System.getProperty("user.dir"),"test-output","old",dateFolder,reportFile);
-        System.out.println("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^"+extentReportPath);
-        Files.createDirectories(extentReportPath.getParent());
+		extentReportAbsPath=extentReportPath.toString();
+          
 		
-		ExtentSparkReporter sparkReporter=new ExtentSparkReporter(reportFile);
+		//Only risky I/O in try-catch
+        try {
+        	Files.createDirectories(extentReportPath.getParent());
+        	
+			
+		} catch (Exception e) {
+			LogHelper.error("Failed to create Folder with date: "+dateFolder, e);
+		}
+        
+        //Extent setup outside try-catch (fail fast if misconfigured;
+        //fail fast-means If Extent initialization fails, execution stops immediately.)
+        ExtentSparkReporter sparkReporter=new ExtentSparkReporter(extentReportAbsPath);
+        
 		
 		//Report configuration
 		sparkReporter.config().setDocumentTitle("Automation Test Report");
@@ -52,7 +68,7 @@ public class ExtentManager {
 		extent.setSystemInfo("OS", System.getProperty("os.name"));
 		extent.setSystemInfo("JAVA Version", System.getProperty("java.version"));
 		extent.setSystemInfo("Browser",System.getProperty("browser", "chrome"));
-		extent.setSystemInfo("Environment", System.getProperty("Environment", "qa"));
+		extent.setSystemInfo("Environment", System.getProperty("Environment", "prod"));
 		
 		
 		
@@ -76,7 +92,7 @@ public class ExtentManager {
 	}
 	
 	public static String getExtentReportAbsPath() {
-		return extentReportPath;
+		return extentReportAbsPath;
 	}
 	
 }

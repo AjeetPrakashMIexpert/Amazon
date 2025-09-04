@@ -73,6 +73,8 @@ public class BaseTest {
 			extent.flush();
 			LogHelper.info("AfterSuite: Extent Report flushed");
 		}
+		//mail.to field in config file has multiple emails;so splitting that string on the basis of comma and 
+		//storing in an array of string
 		String[] recipients = ConfigReader.get("mail.to").split(",");
 		EmailUtil.emailExtentReport(
 				recipients, 
