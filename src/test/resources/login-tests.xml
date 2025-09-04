@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="LoginTestSuite" verbose="1" parallel="tests" thread-count="2">
+
+    <!-- Test block for Login functionality -->
+    <test name="LoginTests">
+        <!-- Run only tests in the "login" group -->
+        <groups>
+            <run>
+                <include name="login"/>
+            </run>
+        </groups>
+
+        <classes>
+            <!-- Fully qualified package + class name -->
+            <class name="tests.AmazonE2ETest"/>
+            <!-- Add more login-related test classes if needed -->
+            <!-- <class name="tests.LoginValidationTests"/> -->
+        </classes>
+    </test>
+
+</suite>

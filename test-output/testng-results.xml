@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results ignored="0" total="1" passed="0" failed="1" skipped="0">
+  <reporter-output>
+    <line>
+      <![CDATA[INFO: BeforeSuite: Extent Report initialized]]>
+    </line>
+    <line>
+      <![CDATA[INFO: Listener: Test Context Started - Default test]]>
+    </line>
+    <line>
+      <![CDATA[INFO: ✅ Config file loaded successfully from: src/test/resources/config.properties]]>
+    </line>
+    <line>
+      <![CDATA[INFO: BeforeTest: Environment set to: config]]>
+    </line>
+    <line>
+      <![CDATA[INFO: BeforeTest: Browser set to: chrome]]>
+    </line>
+    <line>
+      <![CDATA[INFO: BeforeTest: Base URL set to: https://www.amazon.com]]>
+    </line>
+    <line>
+      <![CDATA[INFO: BeforeClass: Initializing page objects for class: AmazonE2ETest]]>
+    </line>
+    <line>
+      <![CDATA[INFO: BeforeMethod: Starting WebDriver for test method: testValidLogin]]>
+    </line>
+    <line>
+      <![CDATA[INFO: Listener: Test Started - testValidLogin]]>
+    </line>
+    <line>
+      <![CDATA[INFO: Fetching Amazon user credential from environment variables]]>
+    </line>
+    <line>
+      <![CDATA[INFO: Fetching Amazon password from environment variables]]>
+    </line>
+    <line>
+      <![CDATA[INFO: Starting login test for user: nobleprizewinners@gmail.com]]>
+    </line>
+    <line>
+      <![CDATA[Error: Listener: Test Failed - testValidLogin]]>
+    </line>
+    <line>
+      <![CDATA[INFO: Screenshot saved at: C:\Users\noble\eclipse-workspace\Amazon\target\screenshots\2025-09-03\Error___20250903_234653.png]]>
+    </line>
+    <line>
+      <![CDATA[INFO: AfterMethod: Cleaning up after test method - testValidLogin]]>
+    </line>
+    <line>
+      <![CDATA[INFO: AfterMethod: WebDriver quit successfully]]>
+    </line>
+    <line>
+      <![CDATA[INFO: AfterClass: Cleaning up class resources for: AmazonE2ETest]]>
+    </line>
+    <line>
+      <![CDATA[INFO: AfterTest: Cleaning up test-level resources]]>
+    </line>
+    <line>
+      <![CDATA[INFO: Listener: Test Context Finished - Default test]]>
+    </line>
+    <line>
+      <![CDATA[INFO: AfterSuite: Extent Report flushed]]>
+    </line>
+    <line>
+      <![CDATA[INFO: Fetching Gmail user from environment variables]]>
+    </line>
+    <line>
+      <![CDATA[INFO: Fetching Gmail App Password from environment variables]]>
+    </line>
+    <line>
+      <![CDATA[Error: Failed to send email report]]>
+    </line>
+  </reporter-output>
+  <suite started-at="2025-09-03T18:16:17Z" name="Default suite" finished-at="2025-09-03T18:16:54Z" duration-ms="36917">
+    <groups>
+    </groups>
+    <test started-at="2025-09-03T18:16:17Z" name="Default test" finished-at="2025-09-03T18:16:54Z" duration-ms="36917">
+      <class name="tests.AmazonE2ETest">
+        <test-method is-config="true" signature="beforeSuite()[pri:0, instance:tests.AmazonE2ETest@5c7933ad]" started-at="2025-09-03T18:16:16Z" name="beforeSuite" finished-at="2025-09-03T18:16:17Z" duration-ms="1032" status="PASS">
+          <reporter-output>
+            <line>
+              <![CDATA[INFO: BeforeSuite: Extent Report initialized]]>
+            </line>
+          </reporter-output>
+        </test-method> <!-- beforeSuite -->
+        <test-method is-config="true" signature="beforeTest()[pri:0, instance:tests.AmazonE2ETest@5c7933ad]" started-at="2025-09-03T18:16:17Z" name="beforeTest" finished-at="2025-09-03T18:16:17Z" duration-ms="4" status="PASS">
+          <reporter-output>
+            <line>
+              <![CDATA[INFO: ✅ Config file loaded successfully from: src/test/resources/config.properties]]>
+            </line>
+            <line>
+              <![CDATA[INFO: BeforeTest: Environment set to: config]]>
+            </line>
+            <line>
+              <![CDATA[INFO: BeforeTest: Browser set to: chrome]]>
+            </line>
+            <line>
+              <![CDATA[INFO: BeforeTest: Base URL set to: https://www.amazon.com]]>
+            </line>
+          </reporter-output>
+        </test-method> <!-- beforeTest -->
+        <test-method is-config="true" signature="beforeClass()[pri:0, instance:tests.AmazonE2ETest@5c7933ad]" started-at="2025-09-03T18:16:17Z" name="beforeClass" finished-at="2025-09-03T18:16:17Z" duration-ms="1" status="PASS">
+          <reporter-output>
+            <line>
+              <![CDATA[INFO: BeforeClass: Initializing page objects for class: AmazonE2ETest]]>
+            </line>
+          </reporter-output>
+        </test-method> <!-- beforeClass -->
+        <test-method is-config="true" signature="setUp(java.lang.reflect.Method)[pri:0, instance:tests.AmazonE2ETest@5c7933ad]" started-at="2025-09-03T18:16:17Z" name="setUp" finished-at="2025-09-03T18:16:22Z" duration-ms="4788" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void tests.AmazonE2ETest.testValidLogin()]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+            <line>
+              <![CDATA[INFO: BeforeMethod: Starting WebDriver for test method: testValidLogin]]>
+            </line>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method signature="testValidLogin()[pri:0, instance:tests.AmazonE2ETest@5c7933ad]" started-at="2025-09-03T18:16:22Z" name="testValidLogin" description="Verify login with valid credential" finished-at="2025-09-03T18:16:53Z" duration-ms="31226" status="FAIL">
+          <exception class="org.openqa.selenium.TimeoutException">
+            <message>
+              <![CDATA[Expected condition failed: waiting for visibility of element located by By.id: ap_email_login (tried for 30 second(s) with 500 milliseconds interval)
+Build info: version: '4.23.0', revision: '4df0a231af'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '17.0.15'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 139.0.7258.155, chrome: {chromedriverVersion: 139.0.7258.154 (9e0d6b2b47f..., userDataDir: C:\Users\noble\AppData\Loca...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:64864}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:64864/devtoo..., se:cdpVersion: 139.0.7258.155, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: edec09286eed6799b29f7ca2b394feb8]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[org.openqa.selenium.TimeoutException: Expected condition failed: waiting for visibility of element located by By.id: ap_email_login (tried for 30 second(s) with 500 milliseconds interval)
+Build info: version: '4.23.0', revision: '4df0a231af'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '17.0.15'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 139.0.7258.155, chrome: {chromedriverVersion: 139.0.7258.154 (9e0d6b2b47f..., userDataDir: C:\Users\noble\AppData\Loca...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:64864}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:64864/devtoo..., se:cdpVersion: 139.0.7258.155, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: edec09286eed6799b29f7ca2b394feb8
+at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:84)
+at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:228)
+at utils.ElementsUtil.findElementUsingId(ElementsUtil.java:50)
+at pages.LoginPage.enterEmail(LoginPage.java:33)
+at pages.LoginPage.login(LoginPage.java:54)
+at tests.AmazonE2ETest.testValidLogin(AmazonE2ETest.java:33)
+at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:124)
+at org.testng.internal.Invoker.invokeMethod(Invoker.java:583)
+at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:719)
+at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:989)
+at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:125)
+at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:109)
+at org.testng.TestRunner.privateRun(TestRunner.java:648)
+at org.testng.TestRunner.run(TestRunner.java:505)
+at org.testng.SuiteRunner.runTest(SuiteRunner.java:455)
+at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:450)
+at org.testng.SuiteRunner.privateRun(SuiteRunner.java:415)
+at org.testng.SuiteRunner.run(SuiteRunner.java:364)
+at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:84)
+at org.testng.TestNG.runSuitesSequentially(TestNG.java:1208)
+at org.testng.TestNG.runSuitesLocally(TestNG.java:1137)
+at org.testng.TestNG.runSuites(TestNG.java:1049)
+at org.testng.TestNG.run(TestNG.java:1017)
+at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
+at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
+]]>
+            </full-stacktrace>
+          </exception> <!-- org.openqa.selenium.TimeoutException -->
+          <reporter-output>
+            <line>
+              <![CDATA[INFO: Listener: Test Started - testValidLogin]]>
+            </line>
+            <line>
+              <![CDATA[INFO: Fetching Amazon user credential from environment variables]]>
+            </line>
+            <line>
+              <![CDATA[INFO: Fetching Amazon password from environment variables]]>
+            </line>
+            <line>
+              <![CDATA[INFO: Starting login test for user: nobleprizewinners@gmail.com]]>
+            </line>
+            <line>
+              <![CDATA[Error: Listener: Test Failed - testValidLogin]]>
+            </line>
+            <line>
+              <![CDATA[INFO: Screenshot saved at: C:\Users\noble\eclipse-workspace\Amazon\target\screenshots\2025-09-03\Error___20250903_234653.png]]>
+            </line>
+          </reporter-output>
+        </test-method> <!-- testValidLogin -->
+        <test-method is-config="true" signature="tearDown(org.testng.ITestResult)[pri:0, instance:tests.AmazonE2ETest@5c7933ad]" started-at="2025-09-03T18:16:53Z" name="tearDown" finished-at="2025-09-03T18:16:54Z" duration-ms="246" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=testValidLogin status=FAILURE method=AmazonE2ETest.testValidLogin()[pri:0, instance:tests.AmazonE2ETest@5c7933ad] output=INFO: Listener: Test Started - testValidLogin]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+            <line>
+              <![CDATA[INFO: AfterMethod: Cleaning up after test method - testValidLogin]]>
+            </line>
+            <line>
+              <![CDATA[INFO: AfterMethod: WebDriver quit successfully]]>
+            </line>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="afterClass()[pri:0, instance:tests.AmazonE2ETest@5c7933ad]" started-at="2025-09-03T18:16:54Z" name="afterClass" finished-at="2025-09-03T18:16:54Z" duration-ms="1" status="PASS">
+          <reporter-output>
+            <line>
+              <![CDATA[INFO: AfterClass: Cleaning up class resources for: AmazonE2ETest]]>
+            </line>
+          </reporter-output>
+        </test-method> <!-- afterClass -->
+        <test-method is-config="true" signature="afterTest()[pri:0, instance:tests.AmazonE2ETest@5c7933ad]" started-at="2025-09-03T18:16:54Z" name="afterTest" finished-at="2025-09-03T18:16:54Z" duration-ms="1" status="PASS">
+          <reporter-output>
+            <line>
+              <![CDATA[INFO: AfterTest: Cleaning up test-level resources]]>
+            </line>
+          </reporter-output>
+        </test-method> <!-- afterTest -->
+        <test-method is-config="true" signature="afterSuite()[pri:0, instance:tests.AmazonE2ETest@5c7933ad]" started-at="2025-09-03T18:16:54Z" name="afterSuite" finished-at="2025-09-03T18:16:59Z" duration-ms="5738" status="PASS">
+          <reporter-output>
+            <line>
+              <![CDATA[INFO: AfterSuite: Extent Report flushed]]>
+            </line>
+            <line>
+              <![CDATA[INFO: Fetching Gmail user from environment variables]]>
+            </line>
+            <line>
+              <![CDATA[INFO: Fetching Gmail App Password from environment variables]]>
+            </line>
+            <line>
+              <![CDATA[Error: Failed to send email report]]>
+            </line>
+          </reporter-output>
+        </test-method> <!-- afterSuite -->
+      </class> <!-- tests.AmazonE2ETest -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
+</testng-results>
