@@ -33,6 +33,10 @@ public class LoginPage {
 
 
 	//Actions
+	public void openUrl() {
+		driver.get(System.getProperty("baseUrl","https://www.google.com"));
+	}
+	
 	public void enterEmail(String email) {
 		elementsUtil.findElement(emailField).sendKeys(email);
 	}
@@ -54,6 +58,8 @@ public class LoginPage {
 	}
 
 	public void login(String email,String password) {
+		openUrl();
+		waitHelper.waitForPageLoad();
 		clickSignInLink();
 		waitHelper.waitForPageLoad();
 		enterEmail(email);		

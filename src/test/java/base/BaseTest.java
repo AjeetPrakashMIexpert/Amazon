@@ -40,6 +40,7 @@ public class BaseTest {
 	protected ChromeOptions options;
 	protected static ExtentReports extent;
 	protected ExtentTest test;
+	private ElementsUtil elementsUtil;
 	
 	// Utility to get driver from ThreadLocal
     public static WebDriver getDriver() {
@@ -203,11 +204,15 @@ public class BaseTest {
 			ChromeOptions options=new ChromeOptions();
 			options=ElementsUtil.suppressWebApplicationNotification(options);
 			options=ElementsUtil.incogintoMode(options);
+			
 			WebDriverManager.chromedriver().setup();		
 			driver=new ChromeDriver(options);
-			ElementsUtil.deleteAllTheCookies(driver);
+			
+			elementsUtil=new ElementsUtil(driver);
+			elementsUtil.deleteAllTheCookies();
+
 		}
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(Integer.parseInt(ConfigReader.get("implicitWait"))));
+		//driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(Integer.parseInt(ConfigReader.get("implicitWait"))));
 		driver.manage().window().maximize();
 		
 		// Store in ThreadLocal

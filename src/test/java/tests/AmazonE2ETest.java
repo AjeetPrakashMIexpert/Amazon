@@ -43,7 +43,7 @@ public class AmazonE2ETest extends BaseTest{
 	}
 	
 	
-	//@Test(description = "Verify login fails with valid user but invalid password")
+	@Test(description = "Verify login fails with valid user but invalid password")
 	public void testInvalidPassword() {
 		
 

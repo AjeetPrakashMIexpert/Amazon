@@ -140,6 +140,7 @@ public class LogHelper {
 
 	}
 
+	
 
 	//--------------------------Error(without exception)--------------------------
 	public static void error(String message) {

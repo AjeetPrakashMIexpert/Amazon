@@ -1,30 +1,16 @@
 package utils;
 
-import java.awt.AWTException;
-import java.awt.Dimension;
-import java.awt.Rectangle;
-import java.awt.Robot;
-import java.awt.Toolkit;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-import java.time.Duration;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-import javax.imageio.ImageIO;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.support.ui.ExpectedCondition;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+
 
 public class ElementsUtil {
 	private WebDriver driver;
@@ -79,25 +65,25 @@ public class ElementsUtil {
 
 
 	//function to scroll into view to product,click the product image and wait till new page loads
-	public void clickProduct(String productXpath) throws InterruptedException {
+	public void clickProduct(By locator) throws InterruptedException {
 		JavascriptExecutor js=(JavascriptExecutor) driver;
 		boolean found=false;
 		for(int i=0;i<10;i++) {
-			try {			
-				WebElement element = driver.findElement(By.xpath(productXpath));				
+			try {	
+				WebElement element = findElement(locator);			
 				js.executeScript("arguments[0].scrollIntoView(true)", element);				
 				js.executeScript("arguments[0].click()",element);
 				found=true;
 				break;
 
 			} catch (NoSuchElementException ex) {
-				System.out.println("Product not found in current view, scrolling...");
+				LogHelper.error("Product not found in current view, scrolling...",ex);
 				js.executeScript("window.scrollBy(0,1000);");
 				Thread.sleep(3000);
 			}
 		}
 		if(!found) {
-			System.out.println("Product not found after scrolling!");
+			LogHelper.error("Product not found after scrolling!");
 		}
 		else {
 			new WaitHelper(driver).waitForPageLoad();
