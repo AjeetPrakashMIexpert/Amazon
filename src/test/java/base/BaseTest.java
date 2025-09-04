@@ -202,7 +202,7 @@ public class BaseTest {
 		default:
 			ChromeOptions options=new ChromeOptions();
 			options=ElementsUtil.suppressWebApplicationNotification(options);
-			options=ElementsUtil.incogintioMode(options);
+			options=ElementsUtil.incogintoMode(options);
 			WebDriverManager.chromedriver().setup();		
 			driver=new ChromeDriver(options);
 			ElementsUtil.deleteAllTheCookies(driver);
