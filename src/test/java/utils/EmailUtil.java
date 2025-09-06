@@ -44,7 +44,7 @@ public class EmailUtil {
 			
 			//Create message
 			Message msg=new MimeMessage(session);
-			msg.setFrom(new InternetAddress(fromEmail,"Automation Lead"));
+			msg.setFrom(new InternetAddress(fromEmail,"Automation Architect-Ajeet Prakash"));
 			
 			for(String recipient : toEmail) {
 				msg.addRecipients(Message.RecipientType.TO, InternetAddress.parse(recipient));

@@ -1,17 +1,17 @@
 package utils;
 
 import java.io.File;
-import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+
 
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
+
+import io.qameta.allure.Attachment;
 
 public class ScreenshotUtil {
 		
@@ -35,8 +35,22 @@ public class ScreenshotUtil {
 		
 	}
 	
+	//for extent report
 	public static String capturesScreenshotBase64(WebDriver driver) {
 		return ((TakesScreenshot) driver).getScreenshotAs(OutputType.BASE64);
+	}
+	
+	//for allure report
+	@Attachment(value = "screenshot - {0}" ,type = "image/png")
+	public static byte[] screenshotForAllure(String testName,WebDriver driver) {
+		
+		try {
+			return ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
+		} catch (Exception e) {
+			LogHelper.error("Failed to capture screenshot for Allure", e);
+			return new byte[0]; //prevent Allure crash
+		}
+		
 	}
 
 }
@@ -222,4 +236,80 @@ public class ScreenshotUtil {
  * 👉 Output will be:
  * 
  * C:\Users\noble\eclipse-workspace\Amazon
+ */
+
+
+
+
+
+/*
+ * Why no try/catch for Base64 method? public static String
+ * captureScreenshotBase64(WebDriver driver) { return ((TakesScreenshot)
+ * driver).getScreenshotAs(OutputType.BASE64); }
+ * 
+ * 
+ * 👉 In real frameworks:
+ * 
+ * This method is always called from a listener (ITestListener) or from a
+ * wrapper (Extent report logger).
+ * 
+ * If it fails, Extent report just won’t have the screenshot. It doesn’t break
+ * the framework because Extent can tolerate null/empty screenshots.
+ * 
+ * So many teams skip try/catch here for simplicity, while for file saving /
+ * Allure, they wrap in try/catch because those are more error-sensitive (file
+ * system + byte[] handling).
+ */
+
+
+
+
+/*
+ * Why not one big try/catch for everything?
+ * 
+ * Example of what you mean:
+ * 
+ * try { // file save // base64 // allure } catch (Exception e) { // handle all
+ * }
+ * 
+ * 
+ * 👉 Problem in enterprise-grade frameworks:
+ * 
+ * Separation of concerns is important.
+ * 
+ * File saving might fail (disk issue) but Base64 might still succeed.
+ * 
+ * If you wrap everything in one try/catch, a failure in one part will stop
+ * other captures too.
+ * 
+ * ✅ Best practice = independent try/catch in each method so one failure doesn’t
+ * block others.
+ */
+
+
+
+/*
+ * why byte[] in public static byte[] screenshotForAllure(String
+ * testName,WebDriver driver)
+ * 
+ * Allure needs the raw data of the file (not Base64, not a File path).
+ * 
+ * Screenshots are binary files (PNG, JPG) → so the natural way to represent
+ * them in Java is as a byte array (byte[]).
+ */
+
+
+
+/*
+ * What does return new byte[0]; mean?
+ * 
+ * This is a fallback for error cases.
+ * 
+ * new byte[0] = creates an empty byte array (length = 0).
+ * 
+ * Instead of returning null (which could cause Allure to throw
+ * NullPointerException), it safely returns an empty array.
+ * 
+ * Allure will just not render anything for that attachment (or show “empty
+ * screenshot”), but your test won’t crash.
  */

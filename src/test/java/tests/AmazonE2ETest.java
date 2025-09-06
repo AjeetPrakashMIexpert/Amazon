@@ -1,12 +1,15 @@
 package tests;
 
-
+import io.qameta.allure.testng.AllureTestNg;
 import org.testng.Assert;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import base.BaseTest;
+import io.qameta.allure.*;
 import utils.CredentialsManager;
 import utils.LogHelper;
+
 
 public class AmazonE2ETest extends BaseTest{
 
@@ -19,6 +22,11 @@ public class AmazonE2ETest extends BaseTest{
 	
 	
 	@Test(description = "Verify login with valid credential")
+	@Epic("amazon.com automation")
+	@Feature("Login Module")
+	@Story("Valid Login")
+	@Severity(SeverityLevel.CRITICAL)
+	@Description("Test Description: Verify login with valid credential")
 	public void testValidLogin() {
 		
 		
@@ -44,6 +52,11 @@ public class AmazonE2ETest extends BaseTest{
 	
 	
 	@Test(description = "Verify login fails with valid user but invalid password")
+	@Epic("amazon.com automation")
+	@Feature("Login Module")
+	@Story("Invalid Login")
+	@Severity(SeverityLevel.CRITICAL)
+	@Description("Test Description: Verify login fails with valid user but invalid password")
 	public void testInvalidPassword() {
 		
 

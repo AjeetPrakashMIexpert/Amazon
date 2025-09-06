@@ -1,0 +1,19 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+
+<suite name="AmazonAutomationSuite">
+
+    <!-- Register listeners here when i did not have this testng.xml file no screenshot was attached in my allure report for failed test cases-->
+    <listeners>
+        <listener class-name="io.qameta.allure.testng.AllureTestNg"/>
+        <listener class-name="listeners.TestListener"/>
+
+    </listeners>
+
+    <!-- Define your tests -->
+    <test name="SmokeTests">
+        <classes>
+            <class name="tests.AmazonE2ETest"/>
+        </classes>
+    </test>
+
+</suite>

@@ -3,6 +3,7 @@ package pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
+import io.qameta.allure.Step;
 import utils.ElementsUtil;
 import utils.WaitHelper;
 
@@ -20,6 +21,7 @@ public class HomePage {
 	
 	private By greetingText=By.id("nav-link-accountList-nav-line-1");
 	
+	@Step("Login Successful and Home Page is displayed!!")
 	public String loginGreetings() {
 		return elementsUtil.findElement(greetingText).getText();
 	}

@@ -1,18 +1,29 @@
-<project xmlns="https://maven.apache.org/POM/4.0.0" xmlns:xsi="https://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="https://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="https://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="https://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>RealWorldAutomation</groupId>
   <artifactId>Amazon</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   
+  
+   <!-- Project-wide properties -->
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+    </properties>
+  
   <dependencies>
-        <!-- Selenium Java -->
+		<!-- Selenium Java -->
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
             <version>4.23.0</version>
         </dependency>
 
-        <!-- TestNG -->
+		<!-- TestNG -->
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
@@ -20,45 +31,44 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- WebDriverManager (auto driver download) -->
+		<!-- WebDriverManager (auto driver download) -->
         <dependency>
             <groupId>io.github.bonigarcia</groupId>
             <artifactId>webdrivermanager</artifactId>
             <version>5.9.2</version>
         </dependency>
-        
-       <!--Extent Report-->
+
+		<!--Extent Report-->
        <dependency>
            <groupId>com.aventstack</groupId>
            <artifactId>extentreports</artifactId>
            <version>5.1.1</version>
        </dependency>
-       
-       
-           <!-- Log4j2 Core -->
+
+
+		<!-- Log4j2 Core -->
     <dependency>
         <groupId>org.apache.logging.log4j</groupId>
         <artifactId>log4j-core</artifactId>
         <version>2.22.1</version>
     </dependency>
 
-    <!-- Log4j2 API -->
+		<!-- Log4j2 API -->
     <dependency>
         <groupId>org.apache.logging.log4j</groupId>
         <artifactId>log4j-api</artifactId>
         <version>2.22.1</version>
     </dependency>
-    
-    <!-- apache common IO for screenshot -->
+
+		<!-- apache common IO for screenshot -->
     <dependency>
     <groupId>commons-io</groupId>
     <artifactId>commons-io</artifactId>
     <version>2.16.1</version>
    </dependency>
-   
 
 
- <!-- Use JavaMail API (Jakarta Mail) to Send Email -->
+		<!-- Use JavaMail API (Jakarta Mail) to Send Email -->
 <dependency>
     <groupId>com.sun.mail</groupId>
     <artifactId>jakarta.mail</artifactId>
@@ -66,8 +76,107 @@
 </dependency>
 
 
+		<!-- Allure TestNG Adapter -->
+    <dependency>
+        <groupId>io.qameta.allure</groupId>
+        <artifactId>allure-testng</artifactId>
+        <version>2.21.0</version>
+    </dependency>
+    
+    <dependency>
+    <groupId>org.aspectj</groupId>
+    <artifactId>aspectjweaver</artifactId>
+    <version>1.9.19</version>
+</dependency>
+
+
    
    
     </dependencies>
+    
+<build>
+    <plugins>
+    
+        <!-- Maven Compiler Plugin -->
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <version>3.13.0</version>
+            <configuration>
+                <source>${maven.compiler.source}</source>
+                <target>${maven.compiler.target}</target>
+                <encoding>${project.build.sourceEncoding}</encoding>
+            </configuration>
+        </plugin>
+			<!-- Allure Maven Plugin -->
+        <plugin>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-maven</artifactId>
+            <version>2.12.0</version>
+        </plugin>
+
+			<!-- Maven Surefire Plugin -->
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-surefire-plugin</artifactId>
+            <version>3.0.0</version>
+            <configuration>
+                <argLine>
+                 -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/1.9.19/aspectjweaver-1.9.19.jar"
+                </argLine>
+                <systemPropertyVariables>
+						<!-- Force allure results into target/allure-results -->
+                    <allure.results.directory>${project.build.directory}/allure-results</allure.results.directory>
+                </systemPropertyVariables>
+            </configuration>
+        </plugin>
+    </plugins>
+</build>
+
   
 </project>
+
+
+<!--<dependencies> = libraries your project needs at runtime/compile time.
+
+<build><plugins> = tools Maven uses at build/test/reporting phase.-->
+
+<!--A build phase is a step in Maven’s build lifecycle.
+Think of Maven as a pipeline — each phase runs in sequence, and plugins hook into those 
+phases to do work (compile code, run tests, package JAR, generate reports, etc.).-->
+
+
+<!--Surefire → Runs the tests + sends results to /target/allure-results.
+
+Allure Maven → Reads those results + builds the report.
+
+Without Surefire:
+
+Tests may run (via Eclipse), but results land in wrong place (/allure-results root).
+
+Without Allure Maven plugin:
+
+Tests run fine, results exist in target/allure-results, but you can’t generate the nice HTML report with mvn allure:serve.
+
+👉 Think of it like this analogy:
+
+Surefire = the printer (produces raw printouts).
+
+Allure Maven plugin = the binder (collects pages into a glossy report).-->
+
+
+
+<!--Without Surefire: Maven doesn’t know how to start TestNG.
+Without TestNG: Surefire has nothing to run.
+
+✅ So:
+
+For local testing in IDE → TestNG alone is enough.
+
+For enterprise projects with CI/CD pipelines → Surefire is essential because it integrates TestNG into Maven lifecycle.-->
+
+
+
+<!--
+add the Maven Compiler Plugin explicitly, even though you have the <properties> for maven.compiler.source and target. 
+This ensures Maven actually uses Java 17 to compile your code, especially in CI/CD pipelines.-->

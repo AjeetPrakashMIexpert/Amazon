@@ -4,6 +4,8 @@ package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+
+import io.qameta.allure.Step;
 import utils.ElementsUtil;
 import utils.WaitHelper;
 
@@ -37,6 +39,7 @@ public class LoginPage {
 		driver.get(System.getProperty("baseUrl","https://www.google.com"));
 	}
 	
+	@Step("Enter email: {0}")
 	public void enterEmail(String email) {
 		elementsUtil.findElement(emailField).sendKeys(email);
 	}
@@ -57,18 +60,19 @@ public class LoginPage {
 		elementsUtil.findElement(signinButton).click();
 	}
 
+	@Step("Login with email{0} and password ******")
 	public void login(String email,String password) {
 		openUrl();
 		waitHelper.waitForPageLoad();
 		clickSignInLink();
-		waitHelper.waitForPageLoad();
+
 		enterEmail(email);		
 		clickContinue();
-		waitHelper.waitForPageLoad();
+
 		enterPassword(password);
 		clickSignIn();
 		waitHelper.waitForPageLoad();
-
+//Use element-level waits (explicit waits) instead of full-page load waits in most cases.
 	}
 	
 	public String incorrectPwd() {
@@ -76,3 +80,35 @@ public class LoginPage {
 	}
 
 }
+
+
+
+
+
+
+/*
+ * What {0} Means in Allure @Step
+ * 
+ * It refers to the method parameter value that gets passed at runtime.
+ * 
+ * {0} = first parameter
+ * 
+ * {1} = second parameter
+ * 
+ * {2} = third parameter … and so on.
+ * 
+ * So when you write:
+ * 
+ * @Step("Enter email: {0}") public void enterEmail(String email) {
+ * driver.findElement(By.id("ap_email")).sendKeys(email); }
+ * 
+ * 
+ * And call it like this:
+ * 
+ * loginPage.enterEmail("test@gmail.com");
+ * 
+ * 
+ * In the Allure report you’ll see:
+ * 
+ * Enter email: test@gmail.com
+ */

@@ -14,6 +14,7 @@
           <include name="tearDown"/>
           <include name="testInvalidPassword"/>
           <include name="beforeClass"/>
+          <include name="testValidLogin"/>
         </methods>
       </class> <!-- tests.AmazonE2ETest -->
     </classes>
