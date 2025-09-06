@@ -27,9 +27,7 @@ public class TestListener implements ITestListener{
 	@Override
 	public void onTestFailure(ITestResult result) {
 		//here we have LogHelper.error not LogHelper.info
-		LogHelper.error("Listener: Test Failed - " + result.getName(), result.getThrowable());
-		System.out.println("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%"+ScreenshotUtil.screenshotForAllure(result.getName(), BaseTest.getDriver()));
-		//attachArtifactsIfAvailable(result);
+		attachArtifactsIfAvailable(result);
 
 	}
 

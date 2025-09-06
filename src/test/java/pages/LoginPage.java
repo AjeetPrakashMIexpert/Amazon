@@ -5,7 +5,13 @@ package pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
+
+import io.qameta.allure.Allure;
+import io.qameta.allure.Param;
 import io.qameta.allure.Step;
+import io.qameta.allure.model.Parameter.Mode;
+import utils.ConfigReader;
+import utils.CredentialsManager;
 import utils.ElementsUtil;
 import utils.WaitHelper;
 
@@ -60,8 +66,11 @@ public class LoginPage {
 		elementsUtil.findElement(signinButton).click();
 	}
 
-	@Step("Login with email{0} and password ******")
-	public void login(String email,String password) {
+
+	@Step("Login with masked credentials")
+	//@Param(mode=Mode.HIDDEN) using this password won't be shown in allure report
+	public void login(String email,@Param(mode=Mode.HIDDEN) String password) {
+		Allure.step("Login with email:- "+email+" and password:- *******");
 		openUrl();
 		waitHelper.waitForPageLoad();
 		clickSignInLink();
